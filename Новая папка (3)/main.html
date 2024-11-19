@@ -189,12 +189,12 @@
                 overflow: hidden;
             }
 
-.floating-item {
-    position: absolute !important;
-    width: 50px !important;
-    height: 50px !important;
-    animation: float 10s linear infinite !important;
-}
+            .floating-item {
+                position: absolute !important;
+                width: 50px !important;
+                height: 50px !important;
+                animation: float 10s linear infinite !important;
+            }
 
                 /* Начальные позиции и задержки для каждого элемента -
                  эти стили у тебя уже должны быть */
@@ -334,78 +334,58 @@
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
         <script>
-            // Создаем Timeline
-            const tl = gsap.timeline();
-
-            // Анимация карточек
-            const cards = document.querySelectorAll('.card');
-            tl.fromTo(cards, { opacity: 0, y: 50 }, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.2,
-            });
-
-            // Анимация заголовка
-            const typedText = document.querySelector('.typed-text');
-            tl.fromTo(typedText, { opacity: 0 }, {
-                opacity: 1,
-                duration: 1,
-                onComplete: () => {
-                    gsap.fromTo(typedText.textContent.split(''), { opacity: 0, y: 10 }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.5,
-                        stagger: 0.05,
-                        ease: 'power2.out'
-                    });
-                }
-            });
-        </script>
-        <script>
-         gsap.to(".floating-item", {
-  duration: 10, // Длительность анимации
-  x: "random(0, 100%)", // Случайное значение x от 0 до 100% ширины контейнера
-  y: "random(0, 100%)", // Случайное значение y от 0 до 100% высоты контейнера
-  repeat: -1, // Бесконечное повторение
-  yoyo: true, // Движение туда-обратно
-  ease: "power1.inOut", // Тип смягчения
-  modifiers: {
-    x: gsap.utils.unitize(x => parseFloat(x) % 100), // Ограничиваем x, чтобы объекты не выходили за границы контейнера
-    y: gsap.utils.unitize(y => parseFloat(y) % 100)  // Ограничиваем y
-  }
-});
-        </script>
-        <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Код GSAP
+                // Создаем Timeline
+                const tl = gsap.timeline();
+
+                // Анимация карточек
+                const cards = document.querySelectorAll('.card');
+                tl.fromTo(cards, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.2,
+                });
+
+
+                // Анимация плавающих элементов
+                gsap.to(".floating-item", {
+                    duration: 10,
+                    x: "random(0, 100%)",
+                    y: "random(0, 100%)",
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "power1.inOut",
+                    modifiers: {
+                        x: gsap.utils.unitize(x => parseFloat(x) % 100),
+                        y: gsap.utils.unitize(y => parseFloat(y) % 100)
+                    }
+                });
+
+                // Анимация заголовка
+                const typedText = document.querySelector('.typed-text');
+                tl.fromTo(typedText, {
+                    opacity: 0
+                }, {
+                    opacity: 1,
+                    duration: 1,
+                    onComplete: () => {
+                        gsap.fromTo(typedText.textContent.split(''), {
+                            opacity: 0,
+                            y: 10
+                        }, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.5,
+                            stagger: 0.05,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
             });
-            gsap.to(".floating-item", {
-                duration: 10, // Длительность анимации
-                x: "random(0, 100%)", // Случайное значение x от 0 до 100% ширины контейнера
-                y: "random(0, 100%)", // Случайное значение y от 0 до 100% высоты контейнера
-                repeat: -1, // Бесконечное повторение
-                yoyo: true, // Движение туда-обратно
-                ease: "power1.inOut", // Тип смягчения
-                modifiers: {
-                    x: gsap.utils.unitize(x => parseFloat(x) % 100), // Ограничиваем x, чтобы объекты не выходили за границы контейнера
-                    y: gsap.utils.unitize(y => parseFloat(y) % 100)  // Ограничиваем y
-                }
-            });
-            
-        </script>
-        <script>
-            function animateItem() {
-                x += dx;
-
-                if (x + item.offsetWidth > background.offsetWidth || x < 0) {
-                    dx = -dx;
-                }
-
-                item.style.left = x + 'px';
-
-                requestAnimationFrame(animateItem);
-            }
         </script>
     </body>
     </html>
