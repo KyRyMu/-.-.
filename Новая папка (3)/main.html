@@ -188,9 +188,8 @@
                 position: relative;
                 overflow: hidden;
             }
-    #floating-item 
 
-{
+.floating-item {
     position: absolute !important;
     width: 50px !important;
     height: 50px !important;
@@ -364,71 +363,36 @@
             });
         </script>
         <script>
-            const floatingItems = document.querySelectorAll('.floating-item');
-            const background = document.getElementById('floating-background');
-
-            floatingItems.forEach(item => {
-                let x = Math.random() * (background.offsetWidth - item.offsetWidth);
-                let y = Math.random() * (background.offsetHeight - item.offsetHeight);
-                let dx = (Math.random() - 0.5) * 4; // Скорость по горизонтали
-                let dy = (Math.random() - 0.5) * 4; // Скорость по вертикали
-
-                function animateItem() {
-                    x += dx;
-                    y += dy;
-
-                    // Проверка столкновения со стенками
-                    if (x + item.offsetWidth > background.offsetWidth || x < 0) {
-                        dx = -dx;
-                    }
-                    if (y + item.offsetHeight > background.offsetHeight || y < 0) {
-                        dy = -dy;
-                    }
-
-                    item.style.left = x + 'px';
-                    item.style.top = y + 'px';
-
-                    requestAnimationFrame(animateItem);
-                }
-
-                animateItem();
-            });
+         gsap.to(".floating-item", {
+  duration: 10, // Длительность анимации
+  x: "random(0, 100%)", // Случайное значение x от 0 до 100% ширины контейнера
+  y: "random(0, 100%)", // Случайное значение y от 0 до 100% высоты контейнера
+  repeat: -1, // Бесконечное повторение
+  yoyo: true, // Движение туда-обратно
+  ease: "power1.inOut", // Тип смягчения
+  modifiers: {
+    x: gsap.utils.unitize(x => parseFloat(x) % 100), // Ограничиваем x, чтобы объекты не выходили за границы контейнера
+    y: gsap.utils.unitize(y => parseFloat(y) % 100)  // Ограничиваем y
+  }
+});
         </script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-
-                const floatingItems = document.querySelectorAll('.floating-item');
-                const background = document.getElementById('floating-background');
-
-                console.log(background); // Проверка, что элемент найден
-
-                floatingItems.forEach(item => {
-                    let x = Math.random() * (background.offsetWidth - item.offsetWidth);
-                    let y = Math.random() * (background.offsetHeight - item.offsetHeight);
-                    let dx = (Math.random() - 0.5) * 4; // Скорость по горизонтали
-                    let dy = (Math.random() - 0.5) * 4; // Скорость по вертикали
-
-                    function animateItem() {
-                        x += dx;
-                        y += dy;
-
-                        // Проверка столкновения со стенками
-                        if (x + item.offsetWidth > background.offsetWidth || x < 0) {
-                            dx = -dx;
-                        }
-                        if (y + item.offsetHeight > background.offsetHeight || y < 0) {
-                            dy = -dy;
-                        }
-
-                        item.style.left = x + 'px';
-                        item.style.top = y + 'px';
-
-                        requestAnimationFrame(animateItem);
-                    }
-
-                    animateItem();
-                });
+                // Код GSAP
             });
+            gsap.to(".floating-item", {
+                duration: 10, // Длительность анимации
+                x: "random(0, 100%)", // Случайное значение x от 0 до 100% ширины контейнера
+                y: "random(0, 100%)", // Случайное значение y от 0 до 100% высоты контейнера
+                repeat: -1, // Бесконечное повторение
+                yoyo: true, // Движение туда-обратно
+                ease: "power1.inOut", // Тип смягчения
+                modifiers: {
+                    x: gsap.utils.unitize(x => parseFloat(x) % 100), // Ограничиваем x, чтобы объекты не выходили за границы контейнера
+                    y: gsap.utils.unitize(y => parseFloat(y) % 100)  // Ограничиваем y
+                }
+            });
+            
         </script>
         <script>
             function animateItem() {
