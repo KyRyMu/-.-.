@@ -1,0 +1,92 @@
+﻿body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2;
+    color: #000000;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #000000;
+    padding: 20px 0;
+}
+
+.drinks-category {
+    margin-bottom: 30px;
+}
+
+    .drinks-category h2 {
+        color: #000000;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+.drinks-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /*  Два столбца одинаковой ширины */
+    gap: 20px;
+    padding: 0 20px;
+}
+.drinks-category h2 {
+    /* ... другие стили ... */
+    font-size: 30px; /*  Увеличиваем размер шрифта  */
+}
+
+.drink-card {
+    background-color: rgba(255, 255, 255, 0.8); /*  Полупрозрачный белый фон  */
+    border-radius: 15px; /*  Скругление углов  */
+    padding: 30px; /*  Отступы  */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .drink-card img {
+        width: 80%;
+        max-width: 200px;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+    }
+
+        .drink-card img:hover {
+            transform: scale(1.1);
+        }
+
+    .drink-card h3 {
+        color: #2f4f4f;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+.details {
+    /* Добавьте стили для блока details, например: */
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    overflow: hidden;
+}
+
+body {
+    /* ... другие стили ... */
+    background-image: url("back-drinks.jpg"); /* Путь к изображению */
+    background-size: cover; /* Растягиваем фон на всю страницу */
+    background-repeat: no-repeat; /* Не повторяем фон */
+    background-attachment: fixed; /* Фиксируем фон при прокрутке */
+}
+#back-to-main {
+    display: block;
+    margin: 20px auto;
+    font-size: 18px; /*  Увеличиваем размер шрифта  */
+    padding: 15px 30px;
+    background-color: #dc143c; /* Цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

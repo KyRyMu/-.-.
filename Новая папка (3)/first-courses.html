@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рецепты напитков</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Фиксированное меню */
+        .header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: px 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Логотип по центру */
+        .logo-container {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .logo {
+            max-height: 50px;
+            width: auto;
+        }
+
+        .menu {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu > li {
+            position: relative;
+            padding: 10px;
+        }
+
+        .menu > li > a {
+            text-decoration: none;
+            color: #ecf0f1;
+            padding: 10px;
+            font-size: 1.1em;
+        }
+
+        .menu > li:hover > .submenu {
+            display: block;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: #34495e;
+            padding: 10px;
+            list-style: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .submenu li a {
+            text-decoration: none;
+            color: #ecf0f1;
+            padding: 10px 15px;
+            display: block;
+            font-size: 1em;
+        }
+
+        .submenu li a:hover {
+            background-color: #3498db;
+        }
+
+        /* Контент напитков */
+        .content {
+            flex: 1;
+            padding: 80px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: justify;
+            flex-direction: column;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            color: #34495e;
+            margin: 0 0 20px;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Кнопки */
+        .back-button, .home-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover, .home-button:hover {
+            background-color: #2980b9;
+        }
+
+        .back-button:hover, .home-button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Рецепты блюд</h1>
+    <ul class="menu">
+        <li>
+            <a href="#">блюда</a>
+            <ul class="submenu">
+                <li><a href="javascript:void(0);" onclick="showDrink('coffee')">Сырный крем-суп с морепродуктами</a></li>
+                <li><a href="javascript:void(0);" onclick="showDrink('tea')">Горячий шоколад</a></li>
+                <li><a href="javascript:void(0);" onclick="showDrink('wine')">Горячий мокко</a></li>
+                <li><a href="javascript:void(0);" onclick="showDrink('cocktail')">Клубника в вине</a></li>
+            </ul>
+        </li>
+        <li><a href="javascript:void(0);" onclick="showHistory()">История напитков</a></li>
+    </ul>
+</header>
+
+<main class="content" id="drink-content">
+    <h2>Выберите блюдо из меню</h2>
+    <p>Чтобы увидеть историю и рецепт блюда, выберите его из меню.</p>
+</main>
+
+<script>
+    const drinks = {
+        coffee: {
+            name: Сырный крем-суп с морепродуктами",
+            history: "Этот крем-суп восходит к традициям французской кухни и стал популярным благодаря своей нежной текстуре и богатому вкусу. Он идеален как для повседневного, так и для праздничного стола.",
+            recipe: "Ингредиенты: Джин 50 мл, Сахарный сироп 10 мл, Сухое шампанское 30 мл, Лимон ½ штуки, Лимонная цедра щепотка. <br>Инструкция приготовления:<br>В шейкер, наполненный колотым льдом, влить джин, сироп и сок половины лимона, все тщательно взболтать, перелить коктейль в бокал для подачи, долить его шам­панским. Украсить лимонной цедрой."
+        },
+        tea: {
+            name: "Луковый крем-суп",
+            history: "Луковый крем-суп - это традиционное французское блюдо, которое было известно с XVII века. Этот суп сочетает в себе сладость карамелизированного лука и нежность крема.",
+            recipe: "Ингредиенты: Лук репчатый 500 г, Масло сливочное 50 г, Бульон 1 л, Соль, Перец, Сыр 100 г.<br>Инструкция приготовления:<br>Лук очистить и нарезать. Обжарить его в масле до золотистого цвета. Добавить бульон, варить 30 минут. Измельчить суп блендером, добавить натертый сыр, посолить и поперчить по вкусу."
+        },
+        wine: {
+            name: "Крем-суп из брокколи и голубого сыра",
+            history: "Этот суп стал популярным благодаря сочетанию свежих ингредиентов и насыщенного вкуса голубого сыра. Он отлично подходит для вегетарианцев.",
+            recipe: "Ингредиенты: Брокколи 300 г, Лук 1 шт., Сливки 200 мл, Голубой сыр 100 г, Соль, Перец.<br>Инструкция приготовления:<br>Брокколи отварить, лук обжарить. Измельчить овощи в блендере, добавить сливки и сыр, варить 10 минут."
+        },
+        cocktail: {
+            name: "Нежный суп-пюре из тыквы",
+            history: "Крем-суп из брокколи и голубого сыра.",
+            recipe: "Ингредиенты: Тыква 500 г, Лук 1 шт., Овощной бульон 1 л, Сливки 100 мл, Соль, Перец.<br>Инструкция приготовления:<br>Тыкву нарезать и отварить, лук обжарить. Измельчить в блендере, добавить бульон и сливки, варить 5 минут."
+        }
+    };
+
+    function showDrink(drink) {
+        const content = document.getElementById('drink-content');
+        const drinkData = drinks[drink];
+
+        content.innerHTML = `
+            <h2>${drinkData.name}</h2>
+            <h3>История:</h3>
+            <p>${drinkData.history}</p>
+            <h3>Рецепт:</h3>
+            <p>${drinkData.recipe}</p>
+            <button class="back-button" onclick="goBack()">Назад</button>
+            <button class="home-button" onclick="goHome()">Главное меню</button>
+        `;
+    }
+
+</p>
+            <button class="back-button" onclick="goBack()">Назад</button>
+            <button class="home-button" onclick="goHome()">Главное меню</button>
+        `;
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+    function goHome() {
+     window.location.href = 'file:///C:/Users/Asus/Desktop/%D0%9D%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%BF%D0%B0%D0%BF%D0%BA%D0%B0%20(3)/main.html';
+
+    }
+</script>
+</body>
+</html>
