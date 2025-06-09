@@ -1,6 +1,7 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <link rel="stylesheet" href="loading-animation.css">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -190,14 +191,14 @@
             }
 
             .floating-item {
-                position: absolute  ! important;
-                width: 50px  ! important;
-                height: 50px ! important;
+                position: absolute !important;
+                width: 50px !important;
+                height: 50px !important;
                 animation: float 10s linear infinite !important;
             }
 
                 /* Начальные позиции и задержки для каждого элемента -
-                 эти стили у тебя уже должны быть */
+                             эти стили у тебя уже должны быть */
                 .floating-item:nth-child(1) {
                     top: 20%;
                     left: 10%;
@@ -231,11 +232,26 @@
             }
 
             /* ... другие стили ... */
+            .honeycomb {
+                display: none;
+            }
+
+            .loader .honeycomb { /*  Показываем анимацию внутри .loader */
+                display: block;
+            }
         </style>
-    
+
     </head>
     <body>
-
+        <div class="honeycomb">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <div class="loader">
             <div class="spinner"></div>
         </div>

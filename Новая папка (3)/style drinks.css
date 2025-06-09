@@ -1,92 +1,120 @@
 ﻿body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-    color: #000000;
-    margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  color: #000000;
+  margin: 0;
+  background-image: url("back-drinks.jpg"); /* Путь к изображению */
+  background-size: cover; /* Растягиваем фон на всю страницу */
+  background-repeat: no-repeat; /* Не повторяем фон */
+  background-attachment: fixed; /* Фиксируем фон при прокрутке */
 }
 
+.background { /*  Класс для размытия фона */
+  position: fixed; /* Фиксируем фон на странице */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Помещаем фон позади контента */
+  filter: blur(5px); /* 5px - радиус размытия */
+} 
+
 h1 {
-    text-align: center;
-    color: #000000;
-    padding: 20px 0;
+  text-align: center;
+  color: #000000;
+  padding: 20px 0;
 }
 
 .drinks-category {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
-    .drinks-category h2 {
-        color: #000000;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+.drinks-category h2 {
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px; /* Увеличиваем размер шрифта */
+}
 
 .drinks-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /*  Два столбца одинаковой ширины */
-    gap: 20px;
-    padding: 0 20px;
-}
-.drinks-category h2 {
-    /* ... другие стили ... */
-    font-size: 30px; /*  Увеличиваем размер шрифта  */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Два столбца одинаковой ширины */
+  gap: 20px;
+  padding: 0 20px;
 }
 
 .drink-card {
-    background-color: rgba(255, 255, 255, 0.8); /*  Полупрозрачный белый фон  */
-    border-radius: 15px; /*  Скругление углов  */
-    padding: 30px; /*  Отступы  */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transform: translateY(20px);
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый фон */
+  border-radius: 15px; /* Скругление углов */
+  padding: 30px; /* Отступы */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: translateY(20px);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-    .drink-card img {
-        width: 80%;
-        max-width: 200px;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 15px;
-        transition: transform 0.3s ease;
-    }
+.drink-card img {
+  width: 80%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
 
-        .drink-card img:hover {
-            transform: scale(1.1);
-        }
+.drink-card img:hover {
+  transform: scale(1.1);
+}
 
-    .drink-card h3 {
-        color: #2f4f4f;
-        margin-bottom: 5px;
-        text-align: center;
-    }
+.drink-card h3 {
+  color: #2f4f4f;
+  margin-bottom: 5px;
+  text-align: center;
+}
 
 .details {
-    /* Добавьте стили для блока details, например: */
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    overflow: hidden;
+  /* Добавьте стили для блока details, например: */
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  overflow: hidden;
 }
 
-body {
-    /* ... другие стили ... */
-    background-image: url("back-drinks.jpg"); /* Путь к изображению */
-    background-size: cover; /* Растягиваем фон на всю страницу */
-    background-repeat: no-repeat; /* Не повторяем фон */
-    background-attachment: fixed; /* Фиксируем фон при прокрутке */
-}
 #back-to-main {
-    display: block;
-    margin: 20px auto;
-    font-size: 18px; /*  Увеличиваем размер шрифта  */
-    padding: 15px 30px;
-    background-color: #dc143c; /* Цвет кнопки */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  font-size: 18px; /* Увеличиваем размер шрифта */
+  padding: 15px 30px;
+  background-color: #dc143c; /* Цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card .content {
+  display: none; /* Содержимое скрыто по умолчанию */
+}
+
+.card.open .content {
+  display: block; /* Содержимое показано, когда у карточки есть класс "open" */
+}
+
+.card {
+  /* Общие стили для всех карточек */
+  width: 300px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.card .card-content {
+  display: none; /* Содержимое скрыто по умолчанию */
+  padding: 20px;
+}
+
+.card.open .card-content {
+  display: block; /* Содержимое показано, когда у карточки есть класс "open" */
 }

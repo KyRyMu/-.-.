@@ -4,38 +4,114 @@
         image: "kir drinks.JPG",
         category: "alcoholic",
         description: "Классический французский коктейль...",
-        recipe: "Смешайте белое вино с черносмородиновым ликером...", // Добавьте настоящий рецепт
-        calcCard: "Вино - 100 мл, ликер - 20 мл..." // Добавьте настоящую калькуляционную карту
+        recipe: `
+      <p><strong>Ингредиенты:</strong></p>
+      <ul>
+        <li>90 мл сухого белого вина (например, Aligoté)</li>
+        <li>10 мл черносмородинового ликера (Crème de Cassis)</li>
+      </ul>
+      <p><strong>Приготовление:</strong></p>
+      <ol>
+        <li>Охладите бокал для вина.</li>
+        <li>Налейте в бокал ликер Crème de Cassis.</li>
+        <li>Долейте белое вино.</li>
+        <li>Аккуратно перемешайте.</li>
+      </ol>
+    `,
+        calcCard: `
+      <p><strong>На 1 порцию:</strong></p>
+      <ul>
+        <li>Вино белое сухое - 90 мл</li>
+        <li>Ликер Crème de Cassis - 10 мл</li>
+      </ul>
+    `
     },
     {
         name: "Французский 75",
         image: "french75.jpg",
         category: "alcoholic",
         description: "Освежающий коктейль с шампанским...",
-        recipe: "Смешайте джин, лимонный сок, сахарный сироп и шампанское...", // Добавьте настоящий рецепт
-        calcCard: "Джин - 50 мл, лимонный сок - 20 мл, сироп - 10 мл, шампанское - 100 мл..." // Добавьте настоящую калькуляционную карту
+        recipe: `
+      <p><strong>Ингредиенты:</strong></p>
+      <ul>
+        <li>50 мл джина</li>
+        <li>20 мл лимонного сока</li>
+        <li>10 мл сахарного сиропа</li>
+        <li>100 мл шампанского</li>
+      </ul>
+      <p><strong>Приготовление:</strong></p>
+      <ol>
+        <li>В шейкере смешайте джин, лимонный сок и сахарный сироп.</li>
+        <li>Добавьте лед и хорошо встряхните.</li>
+        <li>Перелейте в бокал для шампанского.</li>
+        <li>Долейте шампанским.</li>
+      </ol>
+    `,
+        calcCard: `
+      <p><strong>На 1 порцию:</strong></p>
+      <ul>
+        <li>Джин - 50 мл</li>
+        <li>Лимонный сок - 20 мл</li>
+        <li>Сахарный сироп - 10 мл</li>
+        <li>Шампанское - 100 мл</li>
+      </ul>
+    `
     },
     {
         name: "Café au Lait",
         image: "cafe_au_lait.jpg",
         category: "non-alcoholic",
         description: "Кофе с молоком по-французски...",
-        recipe: "Сварите крепкий кофе, добавьте горячее молоко...", // Добавьте настоящий рецепт
-        calcCard: "Кофе - 100 мл, молоко - 100 мл..." // Добавьте настоящую калькуляционную карту
+        recipe: `
+      <p><strong>Ингредиенты:</strong></p>
+      <ul>
+        <li>100 мл крепкого кофе</li>
+        <li>100 мл горячего молока</li>
+      </ul>
+      <p><strong>Приготовление:</strong></p>
+      <ol>
+        <li>Сварите крепкий кофе.</li>
+        <li>Нагрейте молоко.</li>
+        <li>Налейте кофе и молоко в чашку в равных пропорциях.</li>
+      </ol>
+    `,
+        calcCard: `
+      <p><strong>На 1 порцию:</strong></p>
+      <ul>
+        <li>Кофе - 100 мл</li>
+        <li>Молоко - 100 мл</li>
+      </ul>
+    `
     },
-       {
+    {
         name: "Jus d'orange",
         image: "jus_d_orange.jpg",
         category: "non-alcoholic",
         description: "Свежевыжатый апельсиновый сок",
-        recipe: "Выжмите сок из свежих апельсинов...",
-        calcCard: "Апельсины - 4 шт."
+        recipe: `
+      <p><strong>Ингредиенты:</strong></p>
+      <ul>
+        <li>4 апельсина</li>
+      </ul>
+      <p><strong>Приготовление:</strong></p>
+      <ol>
+        <li>Вымойте апельсины.</li>
+        <li>Разрежьте апельсины пополам.</li>
+        <li>Выжмите сок с помощью соковыжималки или вручную.</li>
+      </ol>
+    `,
+        calcCard: `
+      <p><strong>На 1 порцию:</strong></p>
+      <ul>
+        <li>Апельсины - 4 шт.</li>
+      </ul>
+    `
     }
-    // ... другие напитки
 ];
 
-function createDrinkCard(drink) {
+function createDrinkCard(drink, index) {
     const card = document.createElement('div');
+    card.id = `card-${index + 1}`;
     card.classList.add('drink-card');
 
     const img = document.createElement('img');
@@ -50,19 +126,19 @@ function createDrinkCard(drink) {
 
     const details = document.createElement('div');
     details.classList.add('details');
-    details.style.display = "none"; // Изначально скрываем детали
+    details.style.display = "none";
 
     const recipeHeader = document.createElement('h4');
     recipeHeader.textContent = "Рецепт:";
 
     const recipeParagraph = document.createElement('p');
-    recipeParagraph.textContent = drink.recipe;
+    recipeParagraph.innerHTML = drink.recipe; // Используем innerHTML для отображения HTML тегов
 
     const calcCardHeader = document.createElement('h4');
     calcCardHeader.textContent = "Калькуляционная карта:";
 
     const calcCardParagraph = document.createElement('p');
-    calcCardParagraph.textContent = drink.calcCard;
+    calcCardParagraph.innerHTML = drink.calcCard; // Используем innerHTML
 
     details.appendChild(recipeHeader);
     details.appendChild(recipeParagraph);
@@ -72,10 +148,11 @@ function createDrinkCard(drink) {
     card.appendChild(img);
     card.appendChild(title);
     card.appendChild(description);
-    card.appendChild(details); // Добавляем блок details в карточку
+    card.appendChild(details);
 
     card.addEventListener('click', () => {
         const details = card.querySelector('.details');
+
         if (details.style.display === "none") {
             gsap.to(details, { duration: 0.5, height: "auto", opacity: 1, ease: "power1.inOut" });
             details.style.display = "block";
@@ -94,22 +171,21 @@ function createDrinkCard(drink) {
 
     return card;
 }
-
+ 
 function addDrinkCards(drinks, gridId) {
     const grid = document.getElementById(gridId);
     drinks.forEach((drink, index) => {
-        const card = createDrinkCard(drink);
+        const card = createDrinkCard(drink, index);
         grid.appendChild(card);
 
-        // Определяем начальное положение карточки в зависимости от индекса
         let startX, startY;
-        if (index === 0) { // Карточка слева
+        if (index === 0) {
             startX = "-100%";
             startY = "0";
-        } else if (index === 1) { // Карточка справа
+        } else if (index === 1) {
             startX = "100%";
             startY = "0";
-        } else { // Карточка снизу
+        } else {
             startX = "0";
             startY = "100%";
         }
@@ -117,12 +193,12 @@ function addDrinkCards(drinks, gridId) {
         gsap.fromTo(card,
             { x: startX, y: startY, opacity: 0 },
             {
-                duration: 1.5,  //  Длительность анимации
+                duration: 1.5,
                 x: 0,
                 y: 0,
                 opacity: 1,
-                ease: "power1.inOut",  //  Тип смягчения
-                delay: index * 0.3   //  Задержка для каждой карточки
+                ease: "power1.inOut",
+                delay: index * 0.3
             }
         );
     });
@@ -130,6 +206,7 @@ function addDrinkCards(drinks, gridId) {
 
 addDrinkCards(drinks.filter(drink => drink.category === "alcoholic"), "alcoholic-grid");
 addDrinkCards(drinks.filter(drink => drink.category === "non-alcoholic"), "non-alcoholic-grid");
+
 document.getElementById("back-to-main").addEventListener("click", function () {
-    window.location.href = "main.html"; // Замени "index.html" на имя файла главной страницы
+    window.location.href = "main.html";
 });
